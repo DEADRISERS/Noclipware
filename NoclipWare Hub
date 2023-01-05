@@ -1,0 +1,525 @@
+local Library = loadstring(game:HttpGet("https://pastebin.com/raw/vff1bQ9F"))()
+local Window = Library.CreateLib("Noclipware", "Ocean")
+ 
+---Tabs
+
+local Tab1 = Window:NewTab("Credits")
+local Tab1Section = Tab1:NewSection("Credits By DEAD RISERS")
+local Tab1Section = Tab1:NewSection("Dont forget to subscribe The Dead Risers")
+local Tab1Section = Tab1:NewSection("DEAD RISERS ON TOP")
+local Tab2 = Window:NewTab("Main")
+local Tab2Section = Tab2:NewSection("Combat")
+local Tab3 = Window:NewTab("Animation")
+local Tab3Section = Tab3:NewSection("Animation")
+
+---Buttons/Windows/idk
+
+Tab2Section:NewToggle("No Knockback", "No more knockback", function() 
+         if state then 
+                 KnockbackTable["kbDirectionStrength"] = 0.1 
+                 KnockbackTable["kbUpwardStrength"] = 0.1 
+         else 
+                 KnockbackTable["kbDirectionStrength"] = 100 
+                 KnockbackTable["kbUpwardStrength"] = 100 
+         end 
+ end)
+ 
+  game.StarterGui:SetCore("SendNotification", {
+    Title = "Noclipware";
+    Text = "Loading The Script..."; -- what the text says (ofc)
+    Duration = 30;
+})
+wait(5)
+game.StarterGui:SetCore("SendNotification", {
+    Title = "Enjoy for Noclipware";
+    Text = "Don't Forget to Subscribe to dead Risers"; -- what the text says (ofc)
+    Duration = 30;
+})
+
+Tab2Section:NewToggle("NoClick Delay" , "Delay",function()
+local PlayerService = game:GetService("Players")
+local Player = PlayerService.LocalPlayer
+local GuiService = Player.PlayerGui
+local GameGUI = GuiService.GameGUI
+local RNGBar = GameGUI.GameFrame.PlayableFrame.RNGBar
+local RNGProgress = RNGBar.RNGP
+local RNGBarFiller = RNGBar.Filler
+local RNGClicker = script.Parent
+local RNGMultiValue = script.Parent.RNGMulti
+local RNGNumber = 0
+local ClickWait = 0
+local debounce = false
+
+RNGClicker.MouseButton1Click:Connect(function()
+	if debounce then
+		return
+	end
+	debounce = true
+	RNGNumber = math.random(1,10)
+	RNGProgress.Text = RNGNumber
+	ClickWait = 20
+	repeat
+		ClickWait -= 1
+		RNGClicker.Text = math.round(ClickWait - 1)/10
+		wait(0.1)
+	until ClickWait <= 0
+	ClickWait = 0
+	RNGClicker.Text = "Click to Generate!"
+	debounce = false
+end)
+end)
+
+Tab2Section:NewToggle("Resch" , "Reach",function()
+         if state then 
+                 CombatConstant.RAYCAST_SWORD_CHARACTER_DISTANCE = (reachval["Value"] - 0.0001) 
+         else 
+                 CombatConstant.RAYCAST_SWORD_CHARACTER_DISTANCE = 14.4 
+         end 
+ end) 
+
+Tab2Section:NewToggle("AimAssist" , "AimAssist",function()
+function getplrsname() for i,v in pairs(game:GetChildren()) do if v.ClassName == "Players" then return v.Name end end end local players = getplrsname() local plr = game[players].LocalPlayer coroutine.resume(coroutine.create(function() while wait(1) do coroutine.resume(coroutine.create(function() for _,v in pairs(game[players]:GetPlayers()) do if v.Name ~= plr.Name and v.Character then v.Character.RightUpperLeg.CanCollide = false v.Character.RightUpperLeg.Transparency = 75 v.Character.RightUpperLeg.Size = Vector3.new(21,21,21) v.Character.LeftUpperLeg.CanCollide = false v.Character.LeftUpperLeg.Transparency = 75 v.Character.LeftUpperLeg.Size = Vector3.new(21,21,21) v.Character.HeadHB.CanCollide = false v.Character.HeadHB.Transparency = 75 v.Character.HeadHB.Size = Vector3.new(21,21,21) v.Character.HumanoidRootPart.CanCollide = false v.Character.HumanoidRootPart.Transparency = 75 v.Character.HumanoidRootPart.Size = Vector3.new(21,21,21) end end end)) end end))
+end)
+
+Tab2Section:NewLabel("Blatant")
+
+Tab2Section:NewToggle("KillAura" , "Killaura Ez",function()
+if state then
+
+		BindToStepped("Killaura", 1, function()
+
+			if entity.isAlive then
+
+				KillauraRemote()
+
+			end
+
+		end)
+
+	else
+
+		UnbindFromStepped("Killaura")
+
+	end
+
+end)
+
+Tab2Section:NewSlider("JumpPower", "Sussy Speed", 25,10, function(v)
+    game.Players.LocalPlayer.Character.Humanoid.JumpPower = v
+end)
+
+Tab2Section:NewSlider("KillAuraSpeed", "Sussy Speed", 12,6, function(v)
+    game.Players.LocalPlayer.Character.Humanoid.SwingSword = v 
+end)
+
+Tab2Section:NewToggle("Hitbox" , "Hitbox",function()
+_G.HeadSize = 20
+_G.Disabled = true
+
+game:GetService('RunService').RenderStepped:connect(function()
+if _G.Disabled then
+for i,v in next, game:GetService('Players'):GetPlayers() do
+if v.Name ~= game:GetService('Players').LocalPlayer.Name then
+pcall(function()
+v.Character.HumanoidRootPart.Size = Vector3.new(_G.HeadSize,_G.HeadSize,_G.HeadSize)
+v.Character.HumanoidRootPart.Transparency = 0.7
+v.Character.HumanoidRootPart.BrickColor = BrickColor.new("Really blue")
+v.Character.HumanoidRootPart.Material = "Neon"
+v.Character.HumanoidRootPart.CanCollide = false
+end)
+end
+end
+end
+end)
+end)
+
+Tab2Section:NewSlider("Speed", "Bruh Speed", 35,23, function(v)
+    game.Players.LocalPlayer.Character.Humanoid.WalkSpeed = v
+end)
+
+Tab2Section:NewButton("InfJump","GivesUnlimitedJump",function()
+local InfiniteJumpEnabled = true
+game:GetService("UserInputService").JumpRequest:connect(function()
+	if InfiniteJumpEnabled then
+		game:GetService"Players".LocalPlayer.Character:FindFirstChildOfClass'Humanoid':ChangeState("Jumping")
+	end
+end)
+end)
+
+Tab2Section:NewToggle("No Fall Damage", "Opens No Fall Damage", function(callback)
+
+    local nofall = true
+
+    if callback then
+
+        if nofall then
+
+            spawn(function()
+
+                repeat
+
+                    wait()
+
+                    if nofall == false then
+
+                        return end
+
+                        game:GetService("ReplicatedStorage").rbxts_include.node_modules.net.out._NetManaged.GroundHit:FireServer()
+
+                    until nofall == false
+
+                end)
+
+            end
+
+    else
+
+        local nofall = false
+
+    end
+
+end)
+
+Tab2Section:NewToggle("BedNuker"," AutoBreakBEd",function()
+    if state then 
+                 BindToStepped("BedNuker", 1, function() 
+                         nuker() 
+                 end) 
+         else 
+                 UnbindFromStepped("BedNuker") 
+         end 
+ end) 
+
+Tab2Section:NewLabel("Render")
+
+Tab2Section:NewButton("Cape" , "color black or idk",function()
+local player = game:GetService("Players")
+local lplr = player.LocalPlayer
+if lplr.Character.Humanoid.RigType == Enum.HumanoidRigType.R15 then
+      if lplr.Character:FindFirstChild("Torso") then
+        torso = lplr.Character.Torso
+      else
+        torso = lplr.Character.UpperTorso
+      end
+      local CapeP = Instance.new("Part", torso.Parent)
+      CapeP.Name = "Cape"
+      CapeP.Anchored = false
+      CapeP.CanCollide = false
+      CapeP.TopSurface = 0
+      CapeP.BottomSurface = 0
+      CapeP.Color = Color3.fromRGB(0,0,0)
+      CapeP.FormFactor = "Custom"
+      CapeP.Size = Vector3.new(0.2,0.2,0.2)
+      local decal = Instance.new("Decal", CapeP)
+      decal.Texture = "https://www.roblox.com/asset/11876316207/Dododdd"
+      decal.Face = "Back"
+      local msh = Instance.new("BlockMesh", CapeP)
+      msh.Scale = Vector3.new(9,17.5,0.5)
+      local motor = Instance.new("Motor", CapeP)
+      motor.Part0 = CapeP
+      motor.Part1 = torso
+      motor.MaxVelocity = 0.01
+      motor.C0 = CFrame.new(0,1.75,0) * CFrame.Angles(0,math.rad(90),0)
+      motor.C1 = CFrame.new(0,1,0.45) * CFrame.Angles(0,math.rad(90),0)
+      local wave = false
+      repeat wait(1/44)
+        decal.Transparency = torso.Transparency
+        local ang = 0.1
+        local oldmag = torso.Velocity.magnitude
+        local mv = 0.002
+        if wave then
+          ang = ang + ((torso.Velocity.magnitude/10) * 0.05) + 0.05
+          wave = false
+        else
+          wave = true
+        end
+        ang = ang + math.min(torso.Velocity.magnitude/11, 0.5)
+        motor.MaxVelocity = math.min((torso.Velocity.magnitude/111), 0.04) + mv
+        motor.DesiredAngle = -ang
+        if motor.CurrentAngle < -0.2 and motor.DesiredAngle > -0.2 then
+          motor.MaxVelocity = 0.04
+        end
+        repeat wait() until motor.CurrentAngle == motor.DesiredAngle or math.abs(torso.Velocity.magnitude - oldmag) >= (torso.Velocity.magnitude/10) +
+1
+        if torso.Velocity.magnitude < 0.1 then
+          wait(0.1)
+        end
+      until not CapeP or CapeP.Parent ~= torso.Parent
+    end
+end)
+
+Tab2Section:NewToggle("Fov", "Changes Fov", function(state)
+    if state then
+        game.Workspace.CurrentCamera.FieldOfView = 120
+    else
+        game.Workspace.CurrentCamera.FieldOfView = 80
+    end
+end)
+
+Tab2Section:NewButton("Fulbright" , "Dark to light",function()
+local Light = game:GetService("Lighting")
+
+function dofullbright()
+Light.Ambient = Color3.new(1, 1, 1)
+Light.ColorShift_Bottom = Color3.new(1, 1, 1)
+Light.ColorShift_Top = Color3.new(1, 1, 1)
+end
+
+dofullbright()
+
+Light.LightingChanged:Connect(dofullbright)
+end)
+
+Tab2Section:NewToggle("Chams" , "Chams people susdy",function()
+local dwEntities = game:GetService("Players")
+local dwLocalPlayer = dwEntities.LocalPlayer 
+local dwRunService = game:GetService("RunService")
+
+local settings_tbl = {
+    ESP_Enabled = true,
+    ESP_TeamCheck = false,
+    Chams = true,
+    Chams_Color = Color3.fromRGB(255,255,255),
+    Chams_Transparency = 0.1,
+    Chams_Glow_Color = Color3.fromRGB(255,0,0)
+}
+
+function destroy_chams(char)
+
+    for k,v in next, char:GetChildren() do 
+
+        if v:IsA("BasePart") and v.Transparency ~= 1 then
+
+            if v:FindFirstChild("Glow") and 
+            v:FindFirstChild("Chams") then
+
+                v.Glow:Destroy()
+                v.Chams:Destroy() 
+
+            end 
+
+        end 
+
+    end 
+
+end
+
+dwRunService.Heartbeat:Connect(function()
+
+    if settings_tbl.ESP_Enabled then
+
+        for k,v in next, dwEntities:GetPlayers() do 
+
+            if v ~= dwLocalPlayer then
+
+                if v.Character and
+                v.Character:FindFirstChild("HumanoidRootPart") and 
+                v.Character:FindFirstChild("Humanoid") and 
+                v.Character:FindFirstChild("Humanoid").Health ~= 0 then
+
+                    if settings_tbl.ESP_TeamCheck == false then
+
+                        local char = v.Character 
+
+                        for k,b in next, char:GetChildren() do 
+
+                            if b:IsA("BasePart") and 
+                            b.Transparency ~= 1 then
+                                
+                                if settings_tbl.Chams then
+
+                                    if not b:FindFirstChild("Glow") and
+                                    not b:FindFirstChild("Chams") then
+
+                                        local chams_box = Instance.new("BoxHandleAdornment", b)
+                                        chams_box.Name = "Chams"
+                                        chams_box.AlwaysOnTop = true 
+                                        chams_box.ZIndex = 4 
+                                        chams_box.Adornee = b 
+                                        chams_box.Color3 = settings_tbl.Chams_Color
+                                        chams_box.Transparency = settings_tbl.Chams_Transparency
+                                        chams_box.Size = b.Size + Vector3.new(0.02, 0.02, 0.02)
+
+                                        local glow_box = Instance.new("BoxHandleAdornment", b)
+                                        glow_box.Name = "Glow"
+                                        glow_box.AlwaysOnTop = false 
+                                        glow_box.ZIndex = 3 
+                                        glow_box.Adornee = b 
+                                        glow_box.Color3 = settings_tbl.Chams_Glow_Color
+                                        glow_box.Size = chams_box.Size + Vector3.new(0.13, 0.13, 0.13)
+
+                                    end
+
+                                else
+
+                                    destroy_chams(char)
+
+                                end
+                            
+                            end
+
+                        end
+
+                    else
+
+                        if v.Team == dwLocalPlayer.Team then
+                            destroy_chams(v.Character)
+                        end
+
+                    end
+
+                else
+
+                    destroy_chams(v.Character)
+
+                end
+
+            end
+
+        end
+
+    else 
+
+        for k,v in next, dwEntities:GetPlayers() do 
+
+            if v ~= dwLocalPlayer and 
+            v.Character and 
+            v.Character:FindFirstChild("HumanoidRootPart") and 
+            v.Character:FindFirstChild("Humanoid") and 
+            v.Character:FindFirstChild("Humanoid").Health ~= 0 then
+                
+                destroy_chams(v.Character)
+
+            end
+
+        end
+
+    end
+
+end)
+end)
+
+Tab2Section:NewLabel("Utility")
+
+Tab2Section:NewToggle("Anti cheat Disabler 24%" , "24% rip",function()
+loadstring(game:HttpGet("https://raw.githubusercontent.com/Anti-cheat/Bedwars/main/main.lua"))()
+end)
+
+Tab2Section:NewToggle("Auto Report" , "Reports die",function()
+loadstring(game:HttpGet("https://raw.githubusercontent.com/CF-Trail/Auto-Report/main/main.lua"))()
+end)
+
+Tab2Section:NewToggle("Spam" , "Opens Spam",function()
+while true do wait(10) 
+
+local A_1 = "SUBSCRIBE TO DEAD RISERS" local A_2 = "DEAD RISERS ON TOP:)" 
+local Event = game:GetService("ReplicatedStorage").DefaultChatSystemChatEvents.SayMessageRequest Event:FireServer(A_1, A_2) end
+end)
+
+Tab2Section:NewLabel("World")
+
+Tab2Section:NewToggle("X ray" , "wall and idk",function()
+local xrayHotkey = Enum.KeyCode.E
+
+local uis = game:GetService("UserInputService")
+
+
+local xrayOn = false
+
+
+uis.InputBegan:Connect(function(inp, processed)
+ 
+ 
+ if processed then return end
+ 
+ 
+ if inp.KeyCode == xrayHotkey then
+  
+  
+  xrayOn = not xrayOn
+  
+  
+  for i, descendant in pairs(workspace:GetDescendants()) do
+    
+   if descendant:IsA("BasePart") then
+    
+    if xrayOn then
+     
+     if not descendant:FindFirstChild("OriginalTransparency") then
+      
+      local originalTransparency = Instance.new("NumberValue")
+      originalTransparency.Name = "OriginalTransparency"
+      originalTransparency.Value = descendant.Transparency
+      originalTransparency.Parent = descendant
+     end
+     
+     descendant.Transparency = 0.5
+     
+    else
+     descendant.Transparency = descendant.OriginalTransparency.Value
+    end
+   end
+  end
+ end
+end)
+end)
+
+Tab2Section:NewToggle("FreeCam" , "Cam you need keyboard",function()
+loadstring(game:HttpGet("https://raw.githubusercontent.com/RobloxSkriptr/RBLXSkriptr/main/Free%20Camera.lua", true))()
+end)
+
+Tab3Section:NewButton("Zombie Animation" , "Plays Zombie Animation",function()
+
+loadstring(game:HttpGet("https://pastebin.com/raw/t3yTSPRn",true))()
+
+end)
+
+Tab3Section:NewButton("Ninja Animation","Plays Ninja Animation",function()
+
+loadstring(game:HttpGet("https://pastebin.com/raw/bwGLPVV7",true))()
+
+end)
+
+Tab3Section:NewButton("Robot Animation","Plays Robot Animation",function()
+
+local Animate =
+
+game.Players.LocalPlayer.Character.Animate
+
+Animate.idle.Animation1.AnimationId = "http://www.roblox.com/asset/?id=616088211"
+
+Animate.idle.Animation2.AnimationId = "http://www.roblox.com/asset/?id=616089559"
+
+Animate.walk.WalkAnim.AnimationId = "http://www.roblox.com/asset/?id=616095330"
+
+Animate.run.RunAnim.AnimationId = "http://www.roblox.com/asset/?id=616091570"
+
+Animate.jump.JumpAnim.AnimationId = "http://www.roblox.com/asset/?id=616090535"
+
+Animate.climb.ClimbAnim.AnimationId = "http://www.roblox.com/asset/?id=616086039"
+
+Animate.fall.FallAnim.AnimationId = "http://www.roblox.com/asset/?id=616087089"
+
+end)
+
+Tab3Section:NewButton("Toy Animation","Opens Toy Animation",function()
+
+local Animate =
+
+game.Players.LocalPlayer.Character.Animate
+
+Animate.idle.Animation1.AnimationId = "http://www.roblox.com/asset/?id=782841498"
+
+Animate.idle.Animation2.AnimationId = "http://www.roblox.com/asset/?id=782845736"
+
+Animate.walk.WalkAnim.AnimationId = "http://www.roblox.com/asset/?id=782843345"
+
+Animate.run.RunAnim.AnimationId = "http://www.roblox.com/asset/?id=782842708"
+
+Animate.jump.JumpAnim.AnimationId = "http://www.roblox.com/asset/?id=782847020"
+
+Animate.climb.ClimbAnim.AnimationId = "http://www.roblox.com/asset/?id=782843869"
+
+Animate.fall.FallAnim.AnimationId = "http://www.roblox.com/asset/?id=782846423"
+
+end)
