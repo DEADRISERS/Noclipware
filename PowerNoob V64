@@ -1,0 +1,259 @@
+game.StarterGui:SetCore("SendNotification", {
+    Title = "PowerNoob V64";
+    Text = "Cool!"; -- what the text says (ofc)
+    Duration = 1;
+})
+wait(5)
+game.StarterGui:SetCore("SendNotification", {
+    Title = "Enjoy";
+    Text = "Dont be Subscribe to DeadRisers"; -- what the text says (ofc)
+    Duration = 50;
+    Button1 = "Ok i Subscribe"
+})
+local Library = loadstring(game:HttpGet("https://pastebin.com/raw/vff1bQ9F"))()
+local Window = Library.CreateLib("PowerNoob V64", "BloodTheme")
+ 
+---Tabs
+
+local Tab1 = Window:NewTab("Main")
+local Tab1Section = Tab1:NewSection("Subscribe")
+local Tab2 = Window:NewTab("Hubs")
+local Tab2Section = Tab2:NewSection("You are Subscribe?")
+local Tab3 = Window:NewTab("Animation")
+local Tab3Section = Tab3:NewSection("Subscribe")
+local Tab4 = Window:NewTab("Credits")
+local Tab4Section = Tab4:NewSection("Keybind Hides")
+
+local colors = {
+    SchemeColor = Color3.fromRGB(206, 232, 240),
+    Background = Color3.fromRGB(0, 0, 0),
+    Header = Color3.fromRGB(0, 0, 0),
+    TextColor = Color3.fromRGB(255,255,255),
+    ElementColor = Color3.fromRGB(0, 0, 0)
+}
+
+---Buttons/Windows/idk
+
+Tab1Section:NewToggle("KillAura" , "Opens KillAura",function()
+if state then
+
+		BindToStepped("Killaura", 1, function()
+
+			if entity.isAlive then
+
+				KillauraRemote()
+
+			end
+
+		end)
+
+	else
+
+		UnbindFromStepped("Killaura")
+
+	end
+
+end)
+
+Tab1Section:NewSlider("KillAuraSpeed 0-15", "Sussy a Speed", 15,0, function(v)
+    game.Players.LocalPlayer.Character.Humanoid.SwingSword = v 
+end)
+
+Tab1Section:NewButton("Hitbox","Increase Range",function()
+_G.HeadSize = 20
+_G.Disabled = true
+
+game:GetService('RunService').RenderStepped:connect(function()
+if _G.Disabled then
+for i,v in next, game:GetService('Players'):GetPlayers() do
+if v.Name ~= game:GetService('Players').LocalPlayer.Name then
+pcall(function()
+v.Character.HumanoidRootPart.Size = Vector3.new(_G.HeadSize,_G.HeadSize,_G.HeadSize)
+v.Character.HumanoidRootPart.Transparency = 0.7
+v.Character.HumanoidRootPart.BrickColor = BrickColor.new("Really blue")
+v.Character.HumanoidRootPart.Material = "Neon"
+v.Character.HumanoidRootPart.CanCollide = false
+end)
+end
+end
+end
+end)
+end)
+
+Tab1Section:NewSlider("Speed 20-35", "Sussy Speed", 35,20, function(v)
+game.Players.LocalPlayer.Character.Humanoid.WalkSpeed = v
+end)
+
+Tab1Section:NewSlider("JumpPower 5-80", "Sussy Speed", 80,5, function(v)
+    game.Players.LocalPlayer.Character.Humanoid.JumpPower = v
+end)
+
+
+Tab1Section:NewToggle("Spamers" , "Opens Spam",function()
+while true do wait(5) 
+
+local A_1 = "SUBSCRIBE TO DEAD RISERS" local A_2 = "DEAD RISERS ON TOP" local A_3 = "POWERNOOB V64 IS COOLED!" 
+local Event = game:GetService("ReplicatedStorage").DefaultChatSystemChatEvents.SayMessageRequest Event:FireServer(A_1, A_2, A_3) end
+end)
+
+Tab1Section:NewToggle("Esp","Opens Box esp",function()
+loadstring(game:HttpGet("https://raw.githubusercontent.com/zeroisswag/universal-esp/main/esp.lua"))()
+end)
+
+Tab1Section:NewButton("Anti Lag" , "Lag",function()
+print("Started")
+wait()
+local tabz = game:GetService("VirtualUser")
+while wait() do
+game.Workspace.Parts:ClearAllChildren()
+game:GetService("Players").LocalPlayer.Idled:connect(function()
+tabz:Button2Down(Vector2.new(0,0),workspace.CurrentCamera.CFrame)
+wait(1)
+tabz:Button2Up(Vector2.new(0,0),workspace.CurrentCamera.CFrame)
+end)
+end 
+end)
+
+Tab1Section:NewToggle("Nuker" , " AutoBreakBEd",function()
+    if state then 
+                 BindToStepped("BedNuker", 1, function() 
+                         nuker() 
+                 end) 
+         else 
+                 UnbindFromStepped("BedNuker") 
+         end 
+end)
+         
+Tab1Section:NewToggle("NofallDamage" , "NoFall",function()
+local nofall = true
+
+    if callback then
+
+        if nofall then
+
+            spawn(function()
+
+                repeat
+
+                    wait()
+
+                    if nofall == false then
+
+                        return end
+
+                        game:GetService("ReplicatedStorage").rbxts_include.node_modules.net.out._NetManaged.GroundHit:FireServer()
+
+                    until nofall == false
+
+                end)
+
+            end
+
+    else
+
+        local nofall = false
+
+    end
+
+end)
+
+Tab1Section:NewButton("Fulbright" , "Dark to light",function()
+local Light = game:GetService("Lighting")
+
+function dofullbright()
+Light.Ambient = Color3.new(1, 1, 1)
+Light.ColorShift_Bottom = Color3.new(1, 1, 1)
+Light.ColorShift_Top = Color3.new(1, 1, 1)
+end
+
+dofullbright()
+
+Light.LightingChanged:Connect(dofullbright)
+end)
+
+Tab2Section:NewButton("Keyboard" , "Pc",function()
+loadstring(game:HttpGet("https://raw.githubusercontent.com/advxzivhsjjdhxhsidifvsh/mobkeyboard/main/main.txt", true))()
+end)
+
+Tab2Section:NewButton("VapeV4" , "Op",function()
+loadstring(game:HttpGet("https://raw.githubusercontent.com/7GrandDadPGN/VapeV4ForRoblox/main/NewMainScript.lua", true))()
+end)
+
+Tab2Section:NewButton("Rise" , "Op",function()
+loadstring(game:HttpGet("https://raw.githubusercontent.com/7GrandDadPGN/RiseForRoblox/main/main.lua", true))()
+end)
+
+Tab3Section:NewButton("AnimationNotMine","OpenAnimation",function()
+loadstring(game:HttpGet("https://cdn.discordapp.com/attachments/1016359889246879802/1039819753402941460/Protected.lua",true))()
+end)
+
+Tab3Section:NewButton("Toy Animation","Opens Toy Animation",function()
+
+local Animate =
+
+game.Players.LocalPlayer.Character.Animate
+
+Animate.idle.Animation1.AnimationId = "http://www.roblox.com/asset/?id=782841498"
+
+Animate.idle.Animation2.AnimationId = "http://www.roblox.com/asset/?id=782845736"
+
+Animate.walk.WalkAnim.AnimationId = "http://www.roblox.com/asset/?id=782843345"
+
+Animate.run.RunAnim.AnimationId = "http://www.roblox.com/asset/?id=782842708"
+
+Animate.jump.JumpAnim.AnimationId = "http://www.roblox.com/asset/?id=782847020"
+
+Animate.climb.ClimbAnim.AnimationId = "http://www.roblox.com/asset/?id=782843869"
+
+Animate.fall.FallAnim.AnimationId = "http://www.roblox.com/asset/?id=782846423"
+
+end)
+
+Tab3Section:NewButton("Zombie Animation" , "Plays Zombie Animation",function()
+
+loadstring(game:HttpGet("https://pastebin.com/raw/t3yTSPRn",true))()
+
+end)
+
+Tab3Section:NewButton("Ninja Animation","Plays Ninja Animation",function()
+
+loadstring(game:HttpGet("https://pastebin.com/raw/bwGLPVV7",true))()
+
+end)
+
+Tab3Section:NewButton("Robot Animation","Plays Robot Animation",function()
+
+local Animate =
+
+game.Players.LocalPlayer.Character.Animate
+
+Animate.idle.Animation1.AnimationId = "http://www.roblox.com/asset/?id=616088211"
+
+Animate.idle.Animation2.AnimationId = "http://www.roblox.com/asset/?id=616089559"
+
+Animate.walk.WalkAnim.AnimationId = "http://www.roblox.com/asset/?id=616095330"
+
+Animate.run.RunAnim.AnimationId = "http://www.roblox.com/asset/?id=616091570"
+
+Animate.jump.JumpAnim.AnimationId = "http://www.roblox.com/asset/?id=616090535"
+
+Animate.climb.ClimbAnim.AnimationId = "http://www.roblox.com/asset/?id=616086039"
+
+Animate.fall.FallAnim.AnimationId = "http://www.roblox.com/asset/?id=616087089"
+
+end)
+
+Tab4Section:NewKeybind("Keybind" , "Keybind to hide Script", Enum.KeyCode.F, function()
+	Library:ToggleUI()
+end)
+
+Tab4Section:NewLabel("---Credits---")
+
+Tab4Section:NewButton("--- Owner By DEAD RISERS" , "No description",function()
+end)
+
+Tab4Section:NewButton("--- PowerNoob V64?!" , "No description",function()
+end)
+
+Tab4Section:NewButton("--- Dead Risers on top" , "No description",function()
+end)
